@@ -111,8 +111,8 @@ TEST_F(GlobalFile,closealllog)
 		*/
 		/* Test out_alllog == true case */
 		std::string header = "running_";
-		std::string tailCpuRank0 = "_cpu0.log";
-		std::string tail = ".log";
+		std::string tailCpuRank0 = "_cpu0_h0.log";
+		std::string tail = "h0.log";
 		std::string f1 = header + GlobalV::CALCULATION + tailCpuRank0;
 		
 		if (GlobalV::ofs_running.is_open())

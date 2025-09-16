@@ -170,7 +170,7 @@ void ModuleBase::Global_File::make_dir_out(
     // mohan add 2010-09-12
     if(out_alllog)
     {
-	    ss << "running_" << calculation << "_" << rank + 1;
+	    ss << "running_" << calculation << "_h0" << rank + 1;
 	    open_log(GlobalV::ofs_running, ss.str(), calculation, restart);
         #if defined(__CUDA) || defined(__ROCM)
         open_log(GlobalV::ofs_device, "device" + std::to_string(rank), calculation, restart);
@@ -180,7 +180,7 @@ void ModuleBase::Global_File::make_dir_out(
     {
 	    if(rank==0)
 	    {
-		    ss << "running_" << calculation;
+		    ss << "running_" << calculation << "_h0";
 		    open_log(GlobalV::ofs_running, ss.str(), calculation, restart);
             #if defined(__CUDA) || defined(__ROCM)
             open_log(GlobalV::ofs_device, "device", calculation, restart);
@@ -258,7 +258,7 @@ void ModuleBase::Global_File::close_all_log(const int rank, const bool out_alllo
     std::stringstream ss;
 	if(out_alllog)
 	{
-    	ss << "running_" << GlobalV::CALCULATION << "_cpu" << rank << ".log";
+    	ss << "running_" << GlobalV::CALCULATION << "_cpu" << rank << "_h0.log";
     	close_log(GlobalV::ofs_running,ss.str());
         #if defined(__CUDA) || defined(__ROCM)
         close_log(GlobalV::ofs_device, "device" + std::to_string(rank));
@@ -268,7 +268,7 @@ void ModuleBase::Global_File::close_all_log(const int rank, const bool out_alllo
 	{
 		if(rank==0)
 		{
-    		ss << "running_" << GlobalV::CALCULATION << ".log";
+    		ss << "running_" << GlobalV::CALCULATION << "h0.log";
     		close_log(GlobalV::ofs_running,ss.str());
             #if defined(__CUDA) || defined(__ROCM)
             close_log(GlobalV::ofs_device, "device");
